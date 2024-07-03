@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using CustomersManagementAPI.Models;
+﻿using CustomersManagementAPI.Models;
 using CustomersManagementAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CustomersManagementAPI.Controllers
 {
@@ -12,7 +8,6 @@ namespace CustomersManagementAPI.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        //private static List<Customer> Customers = new List<Customer>();
         private readonly ILogger<CustomersController> _logger;
         private readonly ICustomersRepository _repository;
 
@@ -55,7 +50,6 @@ namespace CustomersManagementAPI.Controllers
             try
             {
                 _repository.AddCustomer(customer);
-                //Customers.Add(customer);
                 _logger.LogInformation($"Successfully added customer {customer.Firstname} {customer.Surname}.");
                 return CreatedAtAction(null, new { id = customer.Id }, customer);
             }
@@ -82,7 +76,6 @@ namespace CustomersManagementAPI.Controllers
             try
             {
                 _repository.DeleteCustomer(id);
-                //Customers.Remove(customer);
                 _logger.LogInformation($"Customer with Id {id} removed successfully");
                 return NoContent();
             }
